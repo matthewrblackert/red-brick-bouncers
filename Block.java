@@ -12,13 +12,15 @@ class Block extends JComponent
 	
 	/**
 	 * Instance variables include the interactable boolean, which indicates whether or not a Player can interact with the block,
+	 * the destructable boolean which indicates whether or not a Player can destroy a block
 	 * x_length and y_length that are the size of the given block, and Color which is the color of the block. 
 	 * The instance variables are set to default to false, 0, 0, and black.
 	 * The x_coord and y_coord are the starting location of the Block from which the Grapics class will draw
 	 * 
 	 * Several of these variables are ints because the Graphics class must draw on pixels, and therefore cannot handle doubles
 	 */
-	boolean interactable = true;
+	boolean destructable = false; //defaulted to false because most Blocks should not be destructable until we figure out some potential uses
+	boolean interactable = true; //defaulted to true because most Blocks should be interacted with unless they are a part of the background
 	int x_coord = 0; //0 is on left-hand side, with +x heading to the right
 	int y_coord = 0; //0 is on the top side, with the +y heading down
 	int x_length = 0; //length of this block in the +x direction (right)
@@ -83,19 +85,34 @@ class Block extends JComponent
 	/**
 	 * Creates a Block with a parametrized length, width, color, and interactable boolean
 	 */
-	public Block(int length, int width, Color c, boolean i)
+	public Block(int length, int width, Color c, boolean i, boolean d)
 	{
 		this.x_length = length;
 		this.y_length = width;
 		this.color = c;
 		this.interactable = i;
+		this.destructable = d;
 	}
 
 	
 	//getters and setters
 	
 	/**
-	 * @return whether of not a Player can interact with this Block
+	 * @return whether or not a Player can destroy this Block
+	 */
+	public boolean isDestructable() {
+		return destructable;
+	}
+
+	/**
+	 * @param destructable that will set whether or not a Player can destroy this Block
+	 */
+	public void setDestructable(boolean destructable) {
+		this.destructable = destructable;
+	}
+
+	/**
+	 * @return whether or not a Player can interact with this Block
 	 */
 	public boolean isInteractable() 
 	{
