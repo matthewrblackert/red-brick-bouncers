@@ -192,16 +192,6 @@ class Block extends JComponent
 	
 	
 	//helper methods
-	/**
-	 * Draws the Block object onto the current JFrame
-	 */
-	public void paintComponent(Graphics g)
-	{
-		Graphics2D g2 = (Graphics2D)g;
-		super.paintComponents(g2);
-		g2.setColor(this.color);
-		g2.fillRect(this.x_coord,this.y_coord, this.x_length, this.y_length);
-	}
 
 	/**
 	 * Sets the coordinates of the Block's upper left-hand pixel
