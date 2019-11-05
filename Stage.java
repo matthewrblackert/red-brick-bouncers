@@ -85,6 +85,8 @@ public class Stage extends JComponent
 				g2.setColor(stageBlocks.get(i).getColor());
 				g2.fillRect(stageBlocks.get(i).getX_coord(),stageBlocks.get(i).getY_coord(), stageBlocks.get(i).getX_length(),stageBlocks.get(i).getY_length());
 			}
+			Player p1 = new Player();
+			p1.paintComponent(g2);
 		}
 	}
 }

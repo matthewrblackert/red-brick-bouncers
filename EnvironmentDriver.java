@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.util.*;
 import javax.swing.*;
 
-public class EnvironmentDriver
+public class EnvironmentDriver extends JComponent
 {
+	
+	private static final long serialVersionUID = 1L;
+
 	public static void main(String[] args)
 	{
 //		ArrayList<Block> ar1 = new ArrayList<Block>();
