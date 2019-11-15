@@ -1,9 +1,10 @@
 package environment;
 
 import java.awt.*;
-import javax.swing.*;
+import java.util.*;
+//import javax.swing.*;
 
-class Block extends JComponent
+public class Block extends Bound
 {
 	/**
 	 * Serial number to be utilized by the Serializable class
@@ -26,6 +27,7 @@ class Block extends JComponent
 	int x_length = 0; //length of this block in the +x direction (right)
 	int y_length = 0; //length of this block in the +y direction (down)
 	Color color = Color.black;
+	ArrayList<Bound> bounds;
 	
 	
 	//constructors
@@ -33,7 +35,10 @@ class Block extends JComponent
 	/**
 	 * Creates a default Block object and draws into a given JFrame
 	 */
-	public Block(){}
+	public Block()
+	{
+		this.calculateBounds();
+	}
 	
 	/**
 	 * Creates a Block with a parametrized length and width
@@ -42,6 +47,7 @@ class Block extends JComponent
 	{
 		this.x_length = length;
 		this.y_length = width;
+		this.calculateBounds();
 	}
 	
 	/**
@@ -50,6 +56,7 @@ class Block extends JComponent
 	public Block(Color c)
 	{
 		this.color = c;
+		this.calculateBounds();
 	}
 	
 	/**
@@ -58,6 +65,7 @@ class Block extends JComponent
 	public Block(boolean i)
 	{
 		this.interactable = i;
+		this.calculateBounds();
 	}
 	
 	/**
@@ -68,6 +76,7 @@ class Block extends JComponent
 		this.x_length = length;
 		this.y_length = width;
 		this.color = c;
+		this.calculateBounds();
 	}
 	
 	/**
@@ -80,6 +89,7 @@ class Block extends JComponent
 		this.y_length = width;
 		this.y_coord = y;
 		this.color = c;
+		this.calculateBounds();
 	}
 	
 	/**
@@ -92,6 +102,7 @@ class Block extends JComponent
 		this.color = c;
 		this.interactable = i;
 		this.destructable = d;
+		this.calculateBounds();
 	}
 
 	
@@ -230,6 +241,20 @@ class Block extends JComponent
 	{
 		this.setX_length(x);
 		this.setY_length(y);
+	}
+	
+	public void calculateBounds()
+	{
+		this.bounds = new ArrayList<Bound>();
+		
+		//Bound for top side of rectangle
+		bounds.add(new Bound(this.x_coord,this.y_coord,this.x_length,0));
+		//Bound for left side of rectangle
+		bounds.add(new Bound(this.x_coord,this.y_coord,this.y_length,270));
+		//Bound for right side of rectangle
+		bounds.add(new Bound(this.x_coord+this.x_length,this.y_coord,this.y_length,270));
+		//Bound for bottom side of rectangle
+		bounds.add(new Bound(this.x_coord,this.y_coord+this.y_length,this.x_length,0));
 	}
 }
 	

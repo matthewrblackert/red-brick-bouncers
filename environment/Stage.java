@@ -4,6 +4,8 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 
+import player.Player;
+
 public class Stage extends JComponent
 {
 	/**
@@ -14,8 +16,8 @@ public class Stage extends JComponent
 	/**
 	 * 
 	 */
-//	ArrayList<Block> backGroundArt = new ArrayList<Block>();
-	StageBackground back;
+ //	ArrayList<Block> backGroundArt = new ArrayList<Block>();
+	public StageBackground back;
 	ArrayList<Block> stageBlocks = new ArrayList<Block>();
 	Block floor;
 	Block ceiling;
