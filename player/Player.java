@@ -1,13 +1,8 @@
-package player;
-//import javax.swing.*;
+package environment;
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+public class Player extends JComponent {
 
-import environment.*;
-import physics.*;
-
-public class Player extends Bound 
-{
 	// Instance Variables
 	private static final long serialVersionUID = 1L;
 	double damage;
@@ -19,10 +14,6 @@ public class Player extends Bound
 	int player_height;
 	int drop_rate;
 	int pointOfContact_bottom_left = x_pos + player_height;
-	Vector velocity;
-	Vector gravity;
-	ArrayList<Bound> bounds;
-
 	
 	/**
 	 * No argument constructor for the player.
@@ -37,9 +28,6 @@ public class Player extends Bound
 		player_height = 80;
 		x_pos = 200;
 		y_pos = 400;
-		calculateBounds();
-		calculateGravityVector();
-		calculateVelocityVector();
 	}
 	
 	// This is for future use to add custom players.
@@ -127,6 +115,11 @@ public class Player extends Bound
 	public void setX_pos(int x_pos) {
 		this.x_pos = x_pos;
 	}
+	
+	public void update_right() {
+		this.x_pos = x_pos + 1;
+		super.repaint();
+	}
 
 	/**
 	 * @return the y position of the character.
@@ -203,41 +196,6 @@ public class Player extends Bound
 		this.pointOfContact_bottom_left = pointOfContact_bottom_left;
 	}
 
-	//gravity and collision for player
-	public void calculateBounds()
-	{
-		this.bounds = new ArrayList<Bound>();
-		
-		//Bound for top side of rectangle
-		bounds.add(new Bound(this.x_pos,this.y_pos,this.player_width,0));
-		//Bound for left side of rectangle
-		bounds.add(new Bound(this.x_pos,this.y_pos,this.player_height,270));
-		//Bound for right side of rectangle
-		bounds.add(new Bound(this.x_pos+this.player_width,this.y_pos,this.player_height,270));
-		//Bound for bottom side of rectangle
-		bounds.add(new Bound(this.x_pos,this.y_pos+this.player_height,this.player_width,0));
-	}
-	
-	public void calculateGravityVector()
-	{
-		gravity = new AccelerationVector(this.x_pos,this.y_pos,this.drop_rate,270);
-	}
-	
-	public void calculateVelocityVector()
-	{
-		velocity = new Vector(this.x_pos,this.y_pos,0,0);
-	}
-	
-	public void updatePosition(int newX, int newY)
-	{
-		this.x_pos = newX;
-		this.y_pos = newY;
-	}
-	
-	public void updateVelocity()
-	{
-		
-	}
 	/**
 	 * This allows for the graphics to be drawn onto the screen.
 	 */
